@@ -1,0 +1,3 @@
+juan nos visito 
+maria nos visito 
+& C:/Users/JoseLuis/AppData/Local/Programs/Python/Python311/python.exe c:/Users/JoseLuis/Documents/ValenPython/calse/clase7.py nos visito 
