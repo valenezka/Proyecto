@@ -7,31 +7,29 @@ pygame.init()
 size = (800, 600)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Ultima Carrera del Rayo")
+#Cambiar Icono
+icono=pygame.image.load("tomate.png")
+pygame.display.set_icon(icono)
 #Fondo de pantalla
+
 fondo_image=pygame.image.load('pista2.png').convert()
 fondo_image=pygame.transform.scale(fondo_image,(800,600))
-screen.blit(fondo_image, (0, 0))
-
 
 # Configuración del reloj
 clock = pygame.time.Clock()
 
 # Carga de imágenes
-player_image = pygame.image.load('player.png')
+player_image = pygame.image.load('player2.jpg')
 player_rect = player_image.get_rect()
 player_rect.y = size[1] - player_rect.height - 50
 
-obstacle_image = pygame.image.load('obstacle1.png')
+obstacle_image = pygame.image.load('hick3.jpg')
 obstacle_rect = obstacle_image.get_rect()
 obstacle_rect.x = 600
 obstacle_rect.y = size[1] - obstacle_rect.height - 50
  
  # Configuración de variables del juego
 score = 0
-is_jumping = False
-jump_speed = 20
-jump_height = 200
-jump_pos = 0
 
 # Configuración de la variable de juego que indica si se está ejecutando o no
 running = True
@@ -44,27 +42,24 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False    
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE and not is_jumping:
-                is_jumping = True
-                jump_pos = player_rect.y - jump_height
 
-    # Movimiento del jugador
+
+     # Movimiento del jugador
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT] and player_rect.x > 0:
         player_rect.x -= 5 +tiempo_transcurrido*0.5
     if keys[pygame.K_RIGHT] and player_rect.x < size[0] - player_rect.width:
         player_rect.x += 5+tiempo_transcurrido*0.5
-    if keys[pygame.K_UP] and player_rect.y < size[0] - player_rect.width:
+    if keys[pygame.K_UP] and player_rect.y > 0:
         player_rect.y -=5 +tiempo_transcurrido*0.5
-    if keys[pygame.K_DOWN] and player_rect.y >0:
-        player_rect.y +=5  +tiempo_transcurrido*0.5
+    if keys[pygame.K_DOWN] and player_rect.y < size[1] - player_rect.height:
+        player_rect.y +=5 +tiempo_transcurrido*0.5
 
 
 
     # Movimiento del obstáculo
     
-    obstacle_rect.x -= 3 #Velocidad de juego
+  
     
     obstacle_rect.x -= 3+tiempo_transcurrido*0.5
     
@@ -79,10 +74,11 @@ while running:
     if player_rect.colliderect(obstacle_rect):
         print('Perdiste! Puntuación:', score)
         running = False
+        
 
     # Pintado de la pantalla
     screen.fill((255, 255, 255))
-    
+    screen.blit(fondo_image, (0, 0))
     screen.blit(player_image, player_rect)
     screen.blit(obstacle_image, obstacle_rect)
     font = pygame.font.Font(None, 36)
