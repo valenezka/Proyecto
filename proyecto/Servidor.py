@@ -1,20 +1,4 @@
-# import socket
 
-# serversocket=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-
-# host= socket.gethostname()
-
-# serversocket.bind((host,8080))
-
-# serversocket.listen(1)
-
-# while True:
-#     clientsocket,addr=serversocket.accept()
-
-#     print("Got a connection from %s" % str(addr))
-#     message= clientsocket.recv(1024)
-#     print(message.decode("ascii"))
-#     clientsocket.close()
 import socket
 import sys
 # Crear socket
